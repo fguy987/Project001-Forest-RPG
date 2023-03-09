@@ -15,6 +15,7 @@ public abstract class Unit : MonoBehaviour
     protected Dictionary<Stat, float> stats;
     
     //Getter Properties
+    //ENCAPSULATION
     public Dictionary<Stat, float> Stats => stats;
 
     //Initialization

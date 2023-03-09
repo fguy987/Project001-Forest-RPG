@@ -7,6 +7,7 @@ using UnityEngine;
 /// Stats and unique traits of Grunt Unit
 /// </summary>
 
+//INHERITANCE
 public class Grunt : Unit
 {
     private bool isEnraged = false;
@@ -16,6 +17,7 @@ public class Grunt : Unit
     }
 
 
+   
     protected override void SetSecondaryStats()
     {
         stats[Stat.Atk] = 10f;
@@ -24,13 +26,23 @@ public class Grunt : Unit
         stats[Stat.CritChance] = 5f;
     }
 
+
+    //POLYMORPHISM
     protected override void OnDmgReceived()
     {
         base.OnDmgReceived();
-        
+
+
         //Grunts might become enraged when hit
-        if (!isEnraged && (NumberFactory.RandomPerc() < 10f)) 
-        { 
+        //ABSTRACTION
+        TryActivateRage();
+    }
+
+    //ABSTRACTION
+    private void TryActivateRage()
+    {
+        if (!isEnraged && (NumberFactory.RandomPerc() < 10f))
+        {
             isEnraged = true;
             stats[Stat.Atk] = 15f;
             stats[Stat.CritChance] = 10f;
