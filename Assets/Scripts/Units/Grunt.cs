@@ -10,7 +10,12 @@ using UnityEngine;
 public class Grunt : Unit
 {
     private bool isEnraged = false;
-    
+    private void Start()
+    {
+        SetSecondaryStats();
+    }
+
+
     protected override void SetSecondaryStats()
     {
         stats[Stat.Atk] = 10f;
