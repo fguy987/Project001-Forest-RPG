@@ -8,7 +8,7 @@ public class PlayerInputManager : MonoBehaviour
     
     public static PlayerInputManager s_Instance { get; private set; }
     private static GameControls gameControls;
-    public GameControls GameControls => gameControls;
+    public static GameControls GameControls => gameControls;
 
     private void Awake()
     {
