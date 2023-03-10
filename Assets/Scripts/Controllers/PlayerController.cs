@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private Animator m_animator;
 
     private Vector2 moveInput;
+    private Vector3 globalVelocity, localVelocity;
     private float horizontalInput,verticalInput,speed;
 
     
@@ -43,12 +44,16 @@ public class PlayerController : MonoBehaviour
         moveInput = PlayerInputManager.GameControls.Freeroam.Movement.ReadValue<Vector2>();
         horizontalInput = moveInput.x;
         verticalInput = moveInput.y;
+
+        
     }
 
+        //Debug.Log($"{localVelocity} {globalVelocity}");
     private void FixedUpdate()
     {
-        //Debug.Log($"{horizontalInput} {verticalInput}");
-        m_rigidbody.velocity = transform.InverseTransformDirection(new Vector3(horizontalInput* speed, m_rigidbody.velocity.y, verticalInput* speed));
+        localVelocity = new Vector3(horizontalInput * speed, m_rigidbody.velocity.y, verticalInput * speed);
+        globalVelocity = transform.TransformDirection(localVelocity);
+        m_rigidbody.velocity = globalVelocity; //
         m_animator.SetFloat("speed_f", m_rigidbody.velocity.magnitude);
     }
 
